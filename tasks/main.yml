@@ -2,11 +2,11 @@
 # tasks file for gnome3
 
 - name: Gather the package facts
-  package_facts:
+  ansible.builtin.package_facts:
     manager: auto
 
 - name: Enforce directory permissions
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: '0755'
@@ -26,7 +26,7 @@
   when: "'dconf' in ansible_facts.packages"
 
 - name: Add configuration file to target local profile
-  template:
+  ansible.builtin.template:
     src: 10-ansible
     dest: /etc/dconf/db/local.d/10-ansible
     owner: root
@@ -37,7 +37,7 @@
   when: "'dconf' in ansible_facts.packages"
 
 - name: Add items to be locked
-  template:
+  ansible.builtin.template:
     src: 00-ansible-lock
     dest: /etc/dconf/db/local.d/locks/00-ansible-lock
     owner: root
@@ -48,5 +48,5 @@
   when: "'dconf' in ansible_facts.packages"
 
 - name: Configure GDM profile settings
-  include_tasks: gdm.yml
+  ansible.builtin.include_tasks: gdm.yml
   when: "'dconf' in ansible_facts.packages"

@@ -3,7 +3,7 @@
 - name: Set banner on GNOME graphical interface
   block:
     - name: Create required directories
-      file:
+      ansible.builtin.file:
         path: "{{ item.path }}"
         state: "{{ item.state }}"
         mode: "{{ item.mode }}"
@@ -16,7 +16,7 @@
         - { path: '/usr/share/pixmaps/logo', state: 'directory', mode: '0755' }
 
     - name: Set gdm dconf profile
-      blockinfile:
+      ansible.builtin.blockinfile:
         path: /etc/dconf/profile/gdm
         mode: 0644
         state: present
@@ -31,7 +31,7 @@
       notify: dconf update
 
     - name: Copy logo
-      copy:
+      ansible.builtin.copy:
         src: "files/{{ banner_logo_file_name }}"
         dest: "/usr/share/pixmaps/logo/{{ banner_logo_file_name }}"
         mode: '0644'
@@ -41,7 +41,7 @@
       when: banner_logo_file_name is defined
 
     - name: Configure Logo
-      ini_file:
+      ansible.builtin.ini_file:
         path: /etc/dconf/db/gdm.d/01-logo
         section: "org/gnome/login-screen"
         mode: '0644'
@@ -53,7 +53,7 @@
       notify: dconf update
 
     - name: Configure Greeting Message
-      ini_file:
+      ansible.builtin.ini_file:
         path: /etc/dconf/db/gdm.d/01-banner-message
         section: "org/gnome/login-screen"
         mode: '0644'
