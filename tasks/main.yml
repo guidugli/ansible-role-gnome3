@@ -5,6 +5,16 @@
   ansible.builtin.package_facts:
     manager: auto
 
+- name: Getting Gnome version
+  ansible.builtin.set_fact:
+    gnome_version: "{{ ansible_facts.packages['gnome-session'][0].version | split('.') | first }}"
+  when: "'gnome-session' in ansible_facts.packages"
+
+- name: Display Gnome version if installed
+  ansible.builtin.debug:
+    msg: "Gnome Version: {{ gnome_version }}"
+  when: gnome_version is defined
+
 - name: Enforce directory permissions
   ansible.builtin.file:
     path: "{{ item }}"
@@ -23,18 +33,22 @@
     - /etc/dconf/db/site.d/locks
     - /etc/dconf/db/distro.d
     - /etc/dconf/db/distro.d/locks
-  when: "'dconf' in ansible_facts.packages"
+  when:
+    - gnome_version is defined
+    - "'dconf' in ansible_facts.packages"
 
 - name: Add configuration file to target local profile
   ansible.builtin.template:
-    src: 10-ansible
+    src: "10-ansible-gnome{{ gnome_version }}"
     dest: /etc/dconf/db/local.d/10-ansible
     owner: root
     group: root
     mode: '0644'
     force: yes
   notify: dconf update
-  when: "'dconf' in ansible_facts.packages"
+  when:
+    - gnome_version is defined
+    - "'dconf' in ansible_facts.packages"
 
 - name: Add items to be locked
   ansible.builtin.template:
@@ -45,8 +59,12 @@
     mode: '0644'
     force: yes
   notify: dconf update
-  when: "'dconf' in ansible_facts.packages"
+  when:
+    - gnome_version is defined
+    - "'dconf' in ansible_facts.packages"
 
 - name: Configure GDM profile settings
   ansible.builtin.include_tasks: gdm.yml
-  when: "'dconf' in ansible_facts.packages"
+  when:
+    - gnome_version is defined
+    - "'dconf' in ansible_facts.packages"

@@ -26,7 +26,8 @@ banner_logo_file_name: greeter-logo.png
 
 # URI to use for the background image. Note that the backend only supports
 # local (file://) URIs.
-gnome_background_picture_uri: "file:///usr/share/backgrounds/fedora-workstation/aurora-over-iceland.png"
+gnome_background_picture_uri: "file:///usr/share/backgrounds/gnome/libadwaita-l.jpg"
+gnome_background_picture_uri_dark: "file:///usr/share/backgrounds/gnome/libadwaita-d.jpg"
 
 # Determines how the image set by wallpaper_filename is rendered. Possible
 # values are “none”, “wallpaper”, “centered”, “scaled”, “stretched”, “zoom”, “spanned”.
@@ -36,7 +37,7 @@ gnome_background_picture_options: zoom
 gnome_background_picture_opacity: 100
 
 # Left or Top color when drawing gradients, or the solid color.
-gnome_background_primary_color: "#000000000000"
+gnome_background_primary_color: "#3465a4"
 
 # Right or Bottom color when drawing gradients, not used for solid color.
 gnome_background_secondary_color: "#000000000000"
@@ -480,7 +481,7 @@ gnome_screensaver_picture_options: zoom
 gnome_screensaver_picture_opacity: 100
 
 # Left or Top color when drawing gradients, or the solid color.
-gnome_screensaver_primary_color: "#000000000000"
+gnome_screensaver_primary_color: "#3465a4"
 
 # Right or Bottom color when drawing gradients, not used for solid color.
 gnome_screensaver_secondary_color: "#000000000000"
@@ -622,5 +623,86 @@ gnome_geditor_right_margin_position: 80
 # Whether gedit should create backup copies for the files it saves.
 gnome_geditor_create_backup_copy: false
 
-# Hotkey to add emojis. Default Control+Shift+e may interfere with Terminator.
-gnome_ibus_emoji_hotkey: "[]"
+#### TextEditor ####
+
+# Automatically indent new lines copying the previous line's indentation.
+gnome_texteditor_auto_indent: true
+
+# The delay in seconds to wait before auto-saving a draft.
+gnome_texteditor_auto_save_delay: 10
+
+# A custom font to use in the editor.
+gnome_texteditor_editor_font: 'Monospace 11'
+
+# If enabled then Text Editor will try to discover file settings
+# from modelines, editorconfig, or per-language defaults.
+gnome_texteditor_discover_settings: true
+
+# The various types of spaces to draw in the editor.
+# Can be (or subset): ['space', 'tab', 'newline', 'nbsp', 'leading', 'text', 'trailing']
+gnome_texteditor_draw_spaces: '[]'
+
+# Enable the use of snippets registered with GtkSourceView from within the editor.
+gnome_texteditor_enable_snippets: false
+
+# If enabled, the current line will be highlighted.
+gnome_texteditor_highlight_current_line: false
+
+# If the editor should insert multiple spaces characters instead of tabs.
+# Can be: 'tab' or 'space'
+gnome_texteditor_indent_style: 'tab'
+
+# The number of spaces to indent or -1 to use tab-width.
+gnome_texteditor_indent_width: -1
+
+# The keybindings to use within Text Editor.
+# Valid values: 'default' or 'vim'
+gnome_texteditor_keybindings: 'default'
+
+# The line height to use for the selected font.
+gnome_texteditor_line_height: 1.2
+
+# Use the style-scheme to recolor the application window.
+gnome_texteditor_highlight_recolor_window: true
+
+# When Text Editor is run, restore the previous session.
+gnome_texteditor_highlight_restore_session: true
+
+# The position in characters at which the right margin should be displayed.
+gnome_texteditor_right_margin_position: 120
+
+# If enabled, a blueprint style grid is printed on the editor background.
+gnome_texteditor_show_grid: false
+
+# If line numbers should be displayed next to each line.
+gnome_texteditor_show_line_numbers: false
+
+# If enabled, an overview map of the file will be displayed to the side of the editor.
+gnome_texteditor_show_map: false
+
+# If a margin line should be displayed on the right of the editor.
+gnome_texteditor_show_right_margin: false
+
+# If enabled, then Text Editor will check spelling as you type.
+gnome_texteditor_spellcheck: true
+
+# The style scheme to use by the editor. It may translate this into a dark format when available.
+gnome_texteditor_style_scheme: 'Adwaita'
+
+# Use the light or dark variant of the GTK theme and/or GtkSourceView style scheme.
+# Valid values: 'follow' or 'light' or 'dark'
+gnome_texteditor_style_variant: 'dark'
+
+# The number of spaces represented by a tab.
+gnome_texteditor_tab_width: 8
+
+# If the default system monospace font should be used.
+gnome_geditor_use_system_font: true
+
+# If text should be wrapped.
+gnome_texteditor_wrap_text: true
+
+#####
+
+# Hotkey to add emojis.
+#gnome_ibus_emoji_hotkey: "['<Control>period', '<Control>semicolon']"

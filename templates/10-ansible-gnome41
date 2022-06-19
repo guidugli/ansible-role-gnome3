@@ -6,6 +6,13 @@ pressure-unit='{{ gnome_pressure_unit | default("default") }}'
 distance-unit='{{ gnome_distance_unit | default("default") }}'
 temperature-unit='{{ gnome_temperature_unit | default("default") }}'
 
+[org/gnome/GWeather4]
+
+speed-unit='{{ gnome_speed_unit | default("default") }}'
+pressure-unit='{{ gnome_pressure_unit | default("default") }}'
+distance-unit='{{ gnome_distance_unit | default("default") }}'
+temperature-unit='{{ gnome_temperature_unit | default("default") }}'
+
 [org/gnome/Weather]
 
 locations=[<(uint32 2, <('Leite Lopes, Ribeir Airport', 'SBRP', false, [(-0.36884624277037081, -0.83397648842685956)], @a(dd) [])>)>]
@@ -254,4 +261,4 @@ right-margin-position=uint32 {{ gnome_geditor_right_margin_position | default(80
 create-backup-copy={{ gnome_geditor_create_backup_copy | default(false) | string | lower }}
 
 [/desktop/ibus/panel/emoji]
-hotkey={{ gnome_ibus_emoji_hotkey | default("['<Control><Shift>e']") }}
+hotkey={{ gnome_ibus_emoji_hotkey | default("['<Control>period', '<Control>semicolon']") }}
