@@ -20,7 +20,7 @@ banner_graphical_msg: "Authorized uses only. All activity may be monitored and r
 
 # Copy file from files directory to /usr/share/pixmaps/logo
 # and set GDM dconf profile to use it
-banner_logo_file_name: greeter-logo.png
+#banner_logo_file_name: greeter-logo.png
 
 #### BACKGROUND ####
 
