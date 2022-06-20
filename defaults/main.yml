@@ -194,6 +194,10 @@ gnome_cursor_blink_timeout: 10
 # If true, display weekday in the clock, in addition to time.
 gnome_clock_show_weekday: no
 
+# The preferred color scheme for the user interface. Valid values are “default”,
+# “prefer-dark”, “prefer-light”.
+gnome_color_scheme: 'default'
+
 # If true, display date in the clock, in addition to time.
 gnome_clock_show_date: yes
 

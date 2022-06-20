@@ -64,35 +64,35 @@ automatic-timezone={{ gnome_automatic_timezone | default(true) | string | lower 
 
 [org/gnome/desktop/interface]
 
-text-scaling-factor={{ gnome_text_scaling_factor | default('1.0') }}
-cursor-blink={{ gnome_cursor_blink | default(true) | string | lower }}
-clock-show-weekday={{ gnome_clock_show_weekday | default(false) | string | lower }}
-gtk-theme='{{ gnome_gtk_theme | default("Adwaita") }}'
-cursor-theme='{{ gnome_cursor_theme | default("Adwaita") }}'
-icon-theme='{{ gnome_icon_theme | default("Adwaita") }}'
-
-scaling-factor=uint32 {{ gnome_scaling_factor | default(0) | int }}
-cursor-size={{ gnome_cursor_size | default(24) | int(24) }}
-clock-show-seconds={{ gnome_clock_show_seconds | default(false) | string | lower }}
-clock-show-date={{ gnome_clock_show_date | default(true) | string | lower }}
-cursor-blink-time={{ gnome_cursor_blink_time | default(1200) | int(1200) }}
-toolbar-icons-size='{{ gnome_toolbar_icon_size | default("large") }}'
-toolbar-detachable={{ gnome_toolbar_detachable | default(false) | string | lower }}
-toolbar-style='{{ gnome_toolbar_style | default("both-horiz") }}'
-enable-hot-corners={{ gnome_enable_hot_corners | default(true) | string | lower }}
-monospace-font-name='{{ gnome_monospace_font_name | default("Source Code Pro 10") }}'
-cursor-blink-timeout={{ gnome_cursor_blink_timeout | default(10) | int(10) }}
-overlay-scrolling={{ gnome_overlay_scrolling | default(true) | string | lower }}
-gtk-key-theme='{{ gnome_gtk_key_theme | default("Default") }}'
-menubar-detachable={{ gnome_menubar_detachable | default(false) | string | lower }}
-menubar-accel='{{ gnome_menubar_accel | default("F10") }}'
-document-font-name='{{ gnome_document_font_name | default("Cantarell 11") }}'
 clock-format='{{ gnome_clock_format | default("24h") }}'
+clock-show-date={{ gnome_clock_show_date | default(true) | string | lower }}
+clock-show-seconds={{ gnome_clock_show_seconds | default(false) | string | lower }}
+clock-show-weekday={{ gnome_clock_show_weekday | default(false) | string | lower }}
+color-scheme='{{ gnome_color_scheme | default("default") }}'
+cursor-blink={{ gnome_cursor_blink | default(true) | string | lower }}
+cursor-blink-time={{ gnome_cursor_blink_time | default(1200) | int(1200) }}
+cursor-blink-timeout={{ gnome_cursor_blink_timeout | default(10) | int(10) }}
+cursor-size={{ gnome_cursor_size | default(24) | int(24) }}
+cursor-theme='{{ gnome_cursor_theme | default("Adwaita") }}'
+document-font-name='{{ gnome_document_font_name | default("Cantarell 11") }}'
 enable-animations={{ gnome_enable_animations | default(true) | string | lower }}
-gtk-enable-primary-paste={{ gnome_gtk_enable_primary_paste | default(true) | string | lower }}
-locate-pointer={{ gnome_locate_pointer | default(false) | string | lower }}
+enable-hot-corners={{ gnome_enable_hot_corners | default(true) | string | lower }}
 font-name='{{ gnome_font_name | default("Cantarell 11") }}'
+gtk-enable-primary-paste={{ gnome_gtk_enable_primary_paste | default(true) | string | lower }}
+gtk-key-theme='{{ gnome_gtk_key_theme | default("Default") }}'
+gtk-theme='{{ gnome_gtk_theme | default("Adwaita") }}'
+icon-theme='{{ gnome_icon_theme | default("Adwaita") }}'
+locate-pointer={{ gnome_locate_pointer | default(false) | string | lower }}
+menubar-accel='{{ gnome_menubar_accel | default("F10") }}'
+menubar-detachable={{ gnome_menubar_detachable | default(false) | string | lower }}
+monospace-font-name='{{ gnome_monospace_font_name | default("Source Code Pro 10") }}'
+overlay-scrolling={{ gnome_overlay_scrolling | default(true) | string | lower }}
+scaling-factor=uint32 {{ gnome_scaling_factor | default(0) | int }}
 show-battery-percentage={{ gnome_show_battery_percentage | default(false) | string | lower }}
+text-scaling-factor={{ gnome_text_scaling_factor | default('1.0') }}
+toolbar-detachable={{ gnome_toolbar_detachable | default(false) | string | lower }}
+toolbar-icons-size='{{ gnome_toolbar_icon_size | default("large") }}'
+toolbar-style='{{ gnome_toolbar_style | default("both-horiz") }}'
 
 [org/gnome/desktop/lockdown]
 
@@ -203,16 +203,16 @@ checkin-foursquare-broadcast-facebook={{ gnome_maps_checkin_foursquare_broadcast
 
 [org/gnome/desktop/screensaver]
 
-user-switch-enabled={{ gnome_screensaver_user_switch_enabled | default(true) | string | lower }}
 color-shading-type='{{ gnome_screensave_color_shading_type | default("solid") }}'
-show-full-name-in-top-bar={{ gnome_screensaver_show_full_name_in_top_bar | default(true) | string | lower }}
-picture-uri='{{ gnome_screensaver_picture_uri | default("file:///usr/share/backgrounds/f33/default/f33.xml") }}'
+lock-delay=uint32 {{ gnome_screensaver_lock_delay | default(0) | int }}
 lock-enabled={{ gnome_screensaver_lock_enabled | default(true) | string | lower }}
-primary-color='{{ gnome_screensaver_primary_color | default("#023c88") }}'
 picture-opacity={{ gnome_screensaver_picture_opacity | default(100) | int(100) }}
 picture-options='{{ gnome_screensaver_picture_options | default("zoom") }}'
-lock-delay=uint32 {{ gnome_screensaver_lock_delay | default(0) | int }}
-secondary-color='#5789ca'
+picture-uri='{{ gnome_screensaver_picture_uri | default("file:///usr/share/backgrounds/gnome/libadwaita-l.jpg") }}'
+primary-color='{{ gnome_screensaver_primary_color | default("#023c88") }}'
+secondary-color='{{ gnome_screensaver_secondary_color | default("#5789ca") }}'
+show-full-name-in-top-bar={{ gnome_screensaver_show_full_name_in_top_bar | default(true) | string | lower }}
+user-switch-enabled={{ gnome_screensaver_user_switch_enabled | default(true) | string | lower }}
 
 [org/gnome/rhythmbox/sharing]
 
