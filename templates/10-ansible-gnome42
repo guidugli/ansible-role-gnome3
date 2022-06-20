@@ -225,8 +225,8 @@ enable-sharing={{ gnome_rhythmbox_enable_sharing | default(false) | string | low
 [org/gnome/rhythmbox/plugins]
 
 no-user-plugins={{ gnome_rhythmbox_no_user_plugins | default(false) | string | lower }}
-seen-plugins={{ gnome_rhythmbox_seen_plugins | default("[]") }}
-active-plugins={{ gnome_rhythmbox_active_plugins | default("[]") }}
+seen-plugins={{ gnome_rhythmbox_seen_plugins | default("@as []") }}
+active-plugins={{ gnome_rhythmbox_active_plugins | default("@as []") }}
 
 [org/gnome/software]
 
@@ -234,13 +234,13 @@ allow-updates={{ gnome_software_allow_updates | default(true) | string | lower }
 download-updates={{ gnome_software_download_updates | default(true) | string | lower }}
 download-updates-notify={{ gnome_software_download_updates_notify | default(true) | string | lower }}
 
-[org/gnome/gedit/TextEditor]
+[org/gnome/TextEditor]
 
 auto-indent={{ gnome_texteditor_auto_indent | default(true) | string | lower }}
 auto-save-delay={{ gnome_texteditor_auto_save_delay | default(3) | int(3) }}
 custom-font='{{ gnome_texteditor_editor_font | default("Monospace 11") }}'
 discover-settings={{ gnome_texteditor_discover_settings | default(true) | string | lower }}
-draw-spaces={{ gnome_texteditor_draw_spaces | default([]) }}
+draw-spaces={{ gnome_texteditor_draw_spaces | default("@as []") }}
 enable-snippets={{ gnome_texteditor_enable_snippets | default(false) | string | lower }}
 highlight-current-line={{ gnome_texteditor_highlight_current_line | default(false) | string | lower }}
 indent-style='{{ gnome_texteditor_indent_style | default("tab") }}'
@@ -261,5 +261,5 @@ tab-width={{ gnome_texteditor_tab_width | default(8) | int(8) }}
 use-system-font={{ gnome_geditor_use_system_font | default(true) | string | lower }}
 wrap-text={{ gnome_texteditor_wrap_text | default(true) | string | lower }}
 
-[/desktop/ibus/panel/emoji]
-hotkey={{ gnome_ibus_emoji_hotkey | default("['<Control>period', '<Control>semicolon']") }}
+[desktop/ibus/panel/emoji]
+hotkey={{ gnome_ibus_emoji_hotkey | default("@as ['<Control>period', '<Control>semicolon']") }}

@@ -640,7 +640,7 @@ gnome_texteditor_discover_settings: true
 
 # The various types of spaces to draw in the editor.
 # Can be (or subset): ['space', 'tab', 'newline', 'nbsp', 'leading', 'text', 'trailing']
-gnome_texteditor_draw_spaces: '[]'
+#gnome_texteditor_draw_spaces: '@as []'
 
 # Enable the use of snippets registered with GtkSourceView from within the editor.
 gnome_texteditor_enable_snippets: false
@@ -705,4 +705,4 @@ gnome_texteditor_wrap_text: true
 #####
 
 # Hotkey to add emojis.
-#gnome_ibus_emoji_hotkey: "['<Control>period', '<Control>semicolon']"
+#gnome_ibus_emoji_hotkey: "@as ['<Control>period', '<Control>semicolon']"
