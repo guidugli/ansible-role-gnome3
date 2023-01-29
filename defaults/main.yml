@@ -443,6 +443,8 @@ gnome_file_sharing_ask_password: always
 
 #### MAPS ####
 
+# These settings are not used anymore on gnome43
+
 # Indicates if Foursquare should broadcast the check-in as a tweet in the Twitter account associated
 # with the Foursquare account.
 gnome_maps_checkin_foursquare_broadcast_twitter: no
@@ -709,4 +711,4 @@ gnome_texteditor_wrap_text: true
 #####
 
 # Hotkey to add emojis.
-#gnome_ibus_emoji_hotkey: "@as ['<Control>period', '<Control>semicolon']"
+#gnome_ibus_emoji_hotkey: "@as ['<Super>period']"

@@ -4,7 +4,7 @@ dependencies: []
 galaxy_info:
   role_name: gnome3
   author: guidugli
-  description: Configure gnome3 on linux
+  description: Configure gnome3+ on linux
   company: Creuzo Tech
   license: "license (BSD, MIT)"
   min_ansible_version: '2.9'
@@ -19,6 +19,7 @@ galaxy_info:
         - '34'
         - '35'
         - '36'
+        - '37'
     - name: Ubuntu
       versions:
         - jammy
@@ -31,3 +32,7 @@ galaxy_info:
 
   galaxy_tags:
     - gnome3
+    - gnome40
+    - gnome41
+    - gnome42
+    - gnome43

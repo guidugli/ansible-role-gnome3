@@ -28,7 +28,7 @@
           user-db:user
           system-db:gdm
           file-db:{{ _greeter_dconf_defaults[ansible_os_family] }}
-      notify: dconf update
+      notify: Dconf update
 
     - name: Copy logo
       ansible.builtin.copy:
@@ -50,7 +50,7 @@
         option: logo
         value: "'/usr/share/pixmaps/logo/{{ banner_logo_file_name }}'"
       when: banner_logo_file_name is defined
-      notify: dconf update
+      notify: Dconf update
 
     - name: Configure Greeting Message
       ansible.builtin.ini_file:
@@ -61,7 +61,7 @@
         create: yes
         option: "{{ item.option }}"
         value: "{{ item.value }}"
-      notify: dconf update
+      notify: Dconf update
       loop:
         - { option: "banner-message-enable", value: "true" }
         - { option: "banner-message-text", value: "'{{ banner_graphical_msg }}'" }

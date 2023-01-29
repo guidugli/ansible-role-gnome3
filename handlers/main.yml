@@ -1,5 +1,5 @@
 ---
 # handlers file for gnome3
 
-- name: dconf update
+- name: Dconf update
   ansible.builtin.command: "umask 0022 && dconf update"

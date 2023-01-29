@@ -45,7 +45,7 @@
     group: root
     mode: '0644'
     force: yes
-  notify: dconf update
+  notify: Dconf update
   when:
     - gnome_version is defined
     - "'dconf' in ansible_facts.packages"
@@ -58,7 +58,7 @@
     group: root
     mode: '0644'
     force: yes
-  notify: dconf update
+  notify: Dconf update
   when:
     - gnome_version is defined
     - "'dconf' in ansible_facts.packages"
