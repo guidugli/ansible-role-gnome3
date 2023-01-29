@@ -41,7 +41,7 @@
       when: banner_logo_file_name is defined
 
     - name: Configure Logo
-      ansible.builtin.ini_file:
+      community.general.ini_file:
         path: /etc/dconf/db/gdm.d/01-logo
         section: "org/gnome/login-screen"
         mode: '0644'
@@ -53,7 +53,7 @@
       notify: Dconf update
 
     - name: Configure Greeting Message
-      ansible.builtin.ini_file:
+      community.general.ini_file:
         path: /etc/dconf/db/gdm.d/01-banner-message
         section: "org/gnome/login-screen"
         mode: '0644'
