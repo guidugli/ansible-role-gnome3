@@ -8,7 +8,7 @@ temperature-unit='{{ gnome_temperature_unit | default("default") }}'
 
 [org/gnome/Weather]
 
-locations=[<(uint32 2, ><('Ribeirão Preto', 'SBRP', true, [(-0.36884624277037081, -0.83397648842685956)], [(-0.36962195435641965, -0.834441915378489)])>)]
+locations=[<(uint32 2, <('Ribeirão Preto', 'SBRP', true, [(-0.36884624277037081, -0.83397648842685956)], [(-0.36962195435641965, -0.834441915378489)])>)>]
 automatic-location={{ gnome_weather_auto_location | default(true) | string | lower }}
 
 [org/gnome/shell]
@@ -19,7 +19,7 @@ remember-mount-password={{ gnome_remember_mount_password | default(false) | stri
 
 [org/gnome/shell/weather]
 
-locations=[<(uint32 2, ><('Ribeirão Preto', 'SBRP', true, [(-0.36884624277037081, -0.83397648842685956)], [(-0.36962195435641965, -0.834441915378489)])>)]
+locations=[<(uint32 2, <('Ribeirão Preto', 'SBRP', true, [(-0.36884624277037081, -0.83397648842685956)], [(-0.36962195435641965, -0.834441915378489)])>)>]
 automatic-location={{ gnome_weather_auto_location | default(true) | string | lower }}
 
 [org/gnome/SessionManager]
@@ -174,14 +174,14 @@ default-visible-columns=['name', 'size', 'date_modified_with_time', 'starred']
 
 [org/gnome/desktop/background]
 
-secondary-color='{{ gnome_background_secondary_color | default("#5789ca") }}'
+secondary-color='{{ gnome_background_secondary_color | default("#294172") }}'
 picture-options='{{ gnome_background_picture_options | default("zoom") }}'
 color-shading-type='{{ gnome_background_color_shading_type | default("solid") }}'
 show-desktop-icons={{ gnome_background_show_desktop_icons | default(false) | string | lower }}
 picture-opacity={{ gnome_background_picture_opacity | default(100) | int(100) }}
-picture-uri='{{ gnome_background_picture_uri | default("file:///usr/share/backgrounds/f36/default/f36-01-day.png") }}'
-picture-uri-dark='{{ gnome_background_picture_uri_dark | default("file:///usr/share/backgrounds/f36/default/f36-02-night.png") }}'
-primary-color='{{ gnome_background_primary_color | default("#023c88") }}'
+picture-uri='{{ gnome_background_picture_uri | default("file:///usr/share/backgrounds/f37/default/f37-01-night.webp") }}'
+picture-uri-dark='{{ gnome_background_picture_uri_dark | default("file:///usr/share/backgrounds/f37/default/f37-01-day.webp") }}'
+primary-color='{{ gnome_background_primary_color | default("#51a2da") }}'
 
 [org/gnome/desktop/screensaver]
 
@@ -190,9 +190,9 @@ lock-delay=uint32 {{ gnome_screensaver_lock_delay | default(0) | int }}
 lock-enabled={{ gnome_screensaver_lock_enabled | default(true) | string | lower }}
 picture-opacity={{ gnome_screensaver_picture_opacity | default(100) | int(100) }}
 picture-options='{{ gnome_screensaver_picture_options | default("zoom") }}'
-picture-uri='{{ gnome_screensaver_picture_uri | default("file:///usr/share/backgrounds/gnome/libadwaita-l.jpg") }}'
-primary-color='{{ gnome_screensaver_primary_color | default("#023c88") }}'
-secondary-color='{{ gnome_screensaver_secondary_color | default("#5789ca") }}'
+picture-uri='{{ gnome_screensaver_picture_uri | default("file:///usr/share/backgrounds/f37/default/f37-01-day.webp") }}'
+primary-color='{{ gnome_screensaver_primary_color | default("#51a2da") }}'
+secondary-color='{{ gnome_screensaver_secondary_color | default("#294172") }}'
 show-full-name-in-top-bar={{ gnome_screensaver_show_full_name_in_top_bar | default(true) | string | lower }}
 user-switch-enabled={{ gnome_screensaver_user_switch_enabled | default(true) | string | lower }}
 
