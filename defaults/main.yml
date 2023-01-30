@@ -503,7 +503,8 @@ gnome_background_show_desktop_icons: yes
 #gnome_rhythmbox_require_password: yes
 
 # Password that is required for accessing your shared music.
-#gnome_rhythmbox_share_password: "{{ lookup('password', '/tmp/passwordfile chars=ascii_letters,digits,hexdigits,punctuation length=16') }}"  # yamllint disable-line rule:line-length
+# yamllint disable-line rule:line-length
+#gnome_rhythmbox_share_password: "{{ lookup('password', '/tmp/passwordfile chars=ascii_letters,digits,hexdigits,punctuation length=16') }}"
 
 # When enabled, Rhythmbox will search for shared music on your local network
 #gnome_rhythmbox_enable_browsing: no
