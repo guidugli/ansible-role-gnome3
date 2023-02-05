@@ -1,9 +1,9 @@
 
 [org/gnome/GWeather4]
 
-speed-unit='{{ gnome_speed_unit | default("default") }}'
-pressure-unit='{{ gnome_pressure_unit | default("default") }}'
 distance-unit='{{ gnome_distance_unit | default("default") }}'
+pressure-unit='{{ gnome_pressure_unit | default("default") }}'
+speed-unit='{{ gnome_speed_unit | default("default") }}'
 temperature-unit='{{ gnome_temperature_unit | default("default") }}'
 
 [org/gnome/Weather]
@@ -26,6 +26,7 @@ automatic-location={{ gnome_weather_auto_location | default(true) | string | low
 
 auto-save-session={{ gnome_auto_save_session | default(false) | string | lower }}
 logout-prompt="{{ gnome_logout_prompt | default(true) | string | lower }}"
+show-fallback-warning="{{ gnome_show_fallback_warning | default(true) | string | lower }}"
 
 [org/gnome/desktop/session]
 
@@ -33,10 +34,10 @@ idle-delay=uint32 {{ gnome_session_idle_delay | default(0) | int }}
 
 [org/gnome/calculator]
 
-source-currency='{{ gnome_calculator_source_currency | default("USD") }}'
 button-mode='{{ gnome_calculator_mode | default("basic") }}'
-target-currency='{{ gnome_calculator_target_currency | default("BRL") }}'
 refresh-interval={{ gnome_calculator_refresh_interval | default(86400) }}
+source-currency='{{ gnome_calculator_source_currency | default("USD") }}'
+target-currency='{{ gnome_calculator_target_currency | default("BRL") }}'
 
 [org/gnome/clocks]
 
@@ -89,15 +90,15 @@ toolbar-style='{{ gnome_toolbar_style | default("both-horiz") }}'
 
 [org/gnome/desktop/lockdown]
 
-mount-removable-storage-devices-as-read-only={{ gnome_mount_removable_storage_dev_as_read_only | default(false) | string | lower }}
+disable-application-handlers={{ gnome_disable_application_handlers | default(false) | string | lower }}
 disable-command-line={{ gnome_disable_command_line | default(false) | string | lower }}
+disable-lock-screen={{ gnome_disable_lock_screen | default(false) | string | lower }}
 disable-log-out={{ gnome_disable_logout | default(false) | string | lower }}
 disable-printing={{ gnome_disable_printing | default(false) | string | lower }}
-disable-lock-screen={{ gnome_disable_lock_screen | default(false) | string | lower }}
 disable-print-setup={{ gnome_disable_print_setup | default(false) | string | lower }}
-disable-user-switching={{ gnome_disable_user_switching | default(false) | string | lower }}
-disable-application-handlers={{ gnome_disable_application_handlers | default(false) | string | lower }}
 disable-save-to-disk={{ gnome_disable_save_to_disk | default(false) | string | lower }}
+disable-user-switching={{ gnome_disable_user_switching | default(false) | string | lower }}
+mount-removable-storage-devices-as-read-only={{ gnome_mount_removable_storage_dev_as_read_only | default(false) | string | lower }}
 user-administration-disabled={{ gnome_disable_user_administration | default(false) | string | lower }}
 
 [org/gnome/desktop/media-handling]
@@ -108,30 +109,31 @@ automount={{ gnome_automount | default(true) | string | lower }}
 
 [org/gnome/desktop/privacy]
 
-disable-microphone={{ gnome_disable_microphone | default(false) | string | lower }}
-hide-identity={{ gnome_hide_identity | default(false) | string | lower }}
-recent-files-max-age={{ gnome_recent_files_max_age | default(-1) | int(-1) }}
-remove-old-temp-files={{ gnome_remove_old_tmp_files | default(false) | string | lower }}
-usb-protection-level='{{ gnome_usb_protection_level | default("lockscreen") }}'
-disable-sound-output={{ gnome_disable_sound_output | default(false) | string | lower }}
-old-files-age=uint32 {{ gnome_old_files_age | default(30) | int(30) }}
-remember-app-usage={{ gnome_remember_app_usage | default(true) | string | lower }}
 disable-camera={{ gnome_disable_camera | default(false) | string | lower }}
+disable-microphone={{ gnome_disable_microphone | default(false) | string | lower }}
+disable-sound-output={{ gnome_disable_sound_output | default(false) | string | lower }}
+hide-identity={{ gnome_hide_identity | default(false) | string | lower }}
+old-files-age=uint32 {{ gnome_old_files_age | default(30) | int(30) }}
+privacy-screen={{ gnome_privacy_screen | default(false) | string | lower }}
+recent-files-max-age={{ gnome_recent_files_max_age | default(-1) | int(-1) }}
+remember-app-usage={{ gnome_remember_app_usage | default(true) | string | lower }}
 remember-recent-files={{ gnome_remember_recent_files | default(true) | string | lower }}
-report-technical-problems={{ gnome_report_technical_problems | default(false) | string | lower }}
+remove-old-temp-files={{ gnome_remove_old_tmp_files | default(false) | string | lower }}
 remove-old-trash-files={{ gnome_remove_old_trash_files | default(false) | string | lower }}
-show-full-name-in-top-bar={{ gnome_show_full_name_top_bar | default(true) | string | lower }}
+report-technical-problems={{ gnome_report_technical_problems | default(false) | string | lower }}
 send-software-usage-stats={{ gnome_send_software_usage_stats | default(true) | string | lower }}
+show-full-name-in-top-bar={{ gnome_show_full_name_top_bar | default(true) | string | lower }}
 usb-protection={{ gnome_usb_protection | default(true) | string | lower }}
+usb-protection-level='{{ gnome_usb_protection_level | default("lockscreen") }}'
 
 [org/gnome/desktop/wm/preferences]
 
-titlebar-uses-system-font={{ gnome_titlebar_uses_system_font | default(true) | string | lower }}
-titlebar-font='{{ gnome_titlebar_font | default("Cantarell Bold 11") }}'
+action-double-click-titlebar='{{ gnome_action_double_click_titlebar | default("toggle-maximize") }}'
 action-middle-click-titlebar='{{ gnome_action_middle_click_titlebar | default("none") }}'
 action-right-click-titlebar='{{ gnome_action_right_click_titlebar | default("none") }}'
-action-double-click-titlebar='{{ gnome_action_double_click_titlebar | default("toggle-maximize") }}'
 button-layout='{{ gnome_button_layout | default("appmenu:close") }}'
+titlebar-font='{{ gnome_titlebar_font | default("Cantarell Bold 11") }}'
+titlebar-uses-system-font={{ gnome_titlebar_uses_system_font | default(true) | string | lower }}
 
 [org/gnome/online-accounts]
 
@@ -148,14 +150,14 @@ max-accuracy-level='{{ gnome_location_max_accuracy_level | default("exact") }}'
 
 [org/gnome/settings-daemon/plugins/power]
 
-idle-dim={{ gnome_power_idle_dim | default(true) | string | lower }}
-sleep-inactive-battery-type='{{ gnome_power_sleep_inactive_battery_type | default("suspend") }}'
-idle-brightness={{ gnome_power_idle_brightness | default(30) | int(30) }}
 ambient-enabled={{ gnome_power_ambient_enabled | default(true) | string | lower }}
+idle-brightness={{ gnome_power_idle_brightness | default(30) | int(30) }}
+idle-dim={{ gnome_power_idle_dim | default(true) | string | lower }}
+power-button-action='{{ gnome_power_button_action | default("suspend") }}'
+sleep-inactive-ac-timeout={{ gnome_power_sleep_inactive_ac_timeout | default(0) | int }}
 sleep-inactive-ac-type='{{ gnome_power_sleep_inactive_ac_type | default("suspend") }}'
 sleep-inactive-battery-timeout={{ gnome_power_sleep_inactive_battery_timeout | default(1200) | int(1200) }}
-sleep-inactive-ac-timeout={{ gnome_power_sleep_inactive_ac_timeout | default(0) | int }}
-power-button-action='{{ gnome_power_button_action | default("suspend") }}'
+sleep-inactive-battery-type='{{ gnome_power_sleep_inactive_battery_type | default("suspend") }}'
 
 [org/gtk/settings/file-chooser]
 
@@ -174,25 +176,25 @@ default-visible-columns=['name', 'size', 'date_modified_with_time', 'starred']
 
 [org/gnome/desktop/background]
 
-secondary-color='{{ gnome_background_secondary_color | default("#294172") }}'
-picture-options='{{ gnome_background_picture_options | default("zoom") }}'
 color-shading-type='{{ gnome_background_color_shading_type | default("solid") }}'
-show-desktop-icons={{ gnome_background_show_desktop_icons | default(false) | string | lower }}
 picture-opacity={{ gnome_background_picture_opacity | default(100) | int(100) }}
-picture-uri='{{ gnome_background_picture_uri | default("file:///usr/share/backgrounds/f37/default/f37-01-night.webp") }}'
-picture-uri-dark='{{ gnome_background_picture_uri_dark | default("file:///usr/share/backgrounds/f37/default/f37-01-day.webp") }}'
-primary-color='{{ gnome_background_primary_color | default("#51a2da") }}'
+picture-options='{{ gnome_background_picture_options | default("zoom") }}'
+picture-uri-dark='{{ gnome_background_picture_uri_dark | default("file:///usr/share/backgrounds/f37/default/f37-01-night.webp") }}'
+picture-uri='{{ gnome_background_picture_uri | default("file:///usr/share/backgrounds/f37/default/f37-01-day.webp") }}'
+primary-color='{{ gnome_background_primary_color | default("#5789ca") }}'
+secondary-color='{{ gnome_background_secondary_color | default("#5789ca") }}'
+show-desktop-icons={{ gnome_background_show_desktop_icons | default(false) | string | lower }}
 
 [org/gnome/desktop/screensaver]
 
 color-shading-type='{{ gnome_screensave_color_shading_type | default("solid") }}'
-lock-delay=uint32 {{ gnome_screensaver_lock_delay | default(0) | int }}
+lock-delay=uint32 {{ gnome_screensaver_lock_delay | default(3600) | int }}
 lock-enabled={{ gnome_screensaver_lock_enabled | default(true) | string | lower }}
 picture-opacity={{ gnome_screensaver_picture_opacity | default(100) | int(100) }}
 picture-options='{{ gnome_screensaver_picture_options | default("zoom") }}'
 picture-uri='{{ gnome_screensaver_picture_uri | default("file:///usr/share/backgrounds/f37/default/f37-01-day.webp") }}'
-primary-color='{{ gnome_screensaver_primary_color | default("#51a2da") }}'
-secondary-color='{{ gnome_screensaver_secondary_color | default("#294172") }}'
+primary-color='{{ gnome_screensaver_primary_color | default("#023c88") }}'
+secondary-color='{{ gnome_screensaver_secondary_color | default("#5789ca") }}'
 show-full-name-in-top-bar={{ gnome_screensaver_show_full_name_in_top_bar | default(true) | string | lower }}
 user-switch-enabled={{ gnome_screensaver_user_switch_enabled | default(true) | string | lower }}
 

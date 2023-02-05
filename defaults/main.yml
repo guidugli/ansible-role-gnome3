@@ -16,7 +16,7 @@ gnome_lock_settings:
 #### LOGIN PAGE BANNER AND IMAGE ####
 
 # Message to be displayed on login screen
-banner_graphical_msg: "Authorized uses only. All activity may be monitored and reported."
+#banner_graphical_msg: "Authorized uses only. All activity may be monitored and reported."
 
 # Copy file from files directory to /usr/share/pixmaps/logo
 # and set GDM dconf profile to use it
@@ -83,6 +83,10 @@ gnome_background_show_desktop_icons: yes
 
 # The number of seconds of inactivity before the session is considered idle.
 #gnome_session_idle_delay: 0
+
+# If enabled, gnome-session will display a warning dialog after login if
+# the session was automatically fallen back.
+#show-fallback-warning: yes
 
 #### CALCULATOR ####
 
@@ -336,6 +340,10 @@ gnome_background_show_desktop_icons: yes
 # If TRUE, automatically remove temporary files when they are
 # older than “old-files-age” days.
 #gnome_remove_old_tmp_files: no
+
+# If the underlying hardware has privacy screen support and this setting is enabled,
+# the panels supporting this technology will be obscured from lateral view.
+#gnome_privacy_screen: no
 
 # If set to “lockscreen”, only when the lock screen is present new USB devices will
 # be rejected; if set to “always”, all new USB devices will always be rejected.
