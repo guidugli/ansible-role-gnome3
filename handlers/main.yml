@@ -3,3 +3,4 @@
 
 - name: Dconf update
   ansible.builtin.command: "umask 0022 && dconf update"
+  changed_when: true
