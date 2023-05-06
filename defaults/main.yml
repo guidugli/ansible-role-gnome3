@@ -1,6 +1,12 @@
 ---
 # defaults file for gnome3
 
+# Uncomment and set this variable to change the group that allow users to perform admin
+# operations. By default the users are wheel (RedHat based dist) or sudo (Debian based
+# dist). This is useful if you are using another group for sudo or if you want to
+# have distinct groups to control sudo and admin actions on gnome.
+#gnome_admin_group: admin
+
 #### GNOME SETTINGS TO LOCK ####
 
 gnome_lock_settings:

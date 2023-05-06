@@ -63,6 +63,16 @@
     - gnome_version is defined
     - "'dconf' in ansible_facts.packages"
 
+- name: Configure polkit with new admin group
+  ansible.builtin.template:
+    src: 40-default.rules.j2
+    dest: /etc/polkit-1/rules.d/40-default.rules
+    owner: root
+    group: root
+    mode: '0644'
+    force: yes
+  when: gnome_admin_group is defined
+
 - name: Configure GDM profile settings
   ansible.builtin.include_tasks: gdm.yml
   when:

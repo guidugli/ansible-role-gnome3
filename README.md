@@ -12,6 +12,13 @@ Role Variables
 --------------
 
 **Available variables are listed below, along with default values (see defaults/main.yml):**
+    #gnome_admin_group: admin
+
+Uncomment and set this variable to change the group that allow users to perform admin
+operations. By default the users are wheel (RedHat based dist) or sudo (Debian based
+dist). This is useful if you are using another group for sudo or if you want to
+have distinct groups to control sudo and admin actions on gnome.
+
 
     gnome_lock_settings:
       - org/gnome/Maps/checkin-foursquare-broadcast-twitter
