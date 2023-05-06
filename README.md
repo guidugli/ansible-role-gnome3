@@ -12,6 +12,7 @@ Role Variables
 --------------
 
 **Available variables are listed below, along with default values (see defaults/main.yml):**
+
     #gnome_admin_group: admin
 
 Uncomment and set this variable to change the group that allow users to perform admin
