@@ -1,80 +1,85 @@
 ---
 # tasks file for gnome3
 
-- name: Gather the package facts
-  ansible.builtin.package_facts:
-    manager: auto
+- name: Executing role tasks
+  block:
 
-- name: Getting Gnome version
-  ansible.builtin.set_fact:
-    gnome_version: "{{ ansible_facts.packages['gnome-session'][0].version | split('.') | first }}"
-  when: "'gnome-session' in ansible_facts.packages"
+    - name: Gather the package facts
+      ansible.builtin.package_facts:
+        manager: auto
+    
+    - name: Getting Gnome version
+      ansible.builtin.set_fact:
+        gnome_version: "{{ ansible_facts.packages['gnome-session'][0].version | split('.') | first }}"
+      when: "'gnome-session' in ansible_facts.packages"
+    
+    - name: Display Gnome version if installed
+      ansible.builtin.debug:
+        msg: "Gnome Version: {{ gnome_version }}"
+      when: gnome_version is defined
+    
+    - name: Enforce directory permissions
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+        owner: root
+        group: root
+        modification_time: preserve
+        access_time: preserve
+      loop:
+        - /etc/dconf/db
+        - /etc/dconf/db/local.d
+        - /etc/dconf/db/local.d/locks
+        - /etc/dconf/db/ibus.d
+        - /etc/dconf/db/site.d
+        - /etc/dconf/db/site.d/locks
+        - /etc/dconf/db/distro.d
+        - /etc/dconf/db/distro.d/locks
+      when:
+        - gnome_version is defined
+        - "'dconf' in ansible_facts.packages"
+    
+    - name: Add configuration file to target local profile
+      ansible.builtin.template:
+        src: "10-ansible-gnome{{ gnome_version }}"
+        dest: /etc/dconf/db/local.d/10-ansible
+        owner: root
+        group: root
+        mode: '0644'
+        force: yes
+      notify: Dconf update
+      when:
+        - gnome_version is defined
+        - "'dconf' in ansible_facts.packages"
+    
+    - name: Add items to be locked
+      ansible.builtin.template:
+        src: 00-ansible-lock
+        dest: /etc/dconf/db/local.d/locks/00-ansible-lock
+        owner: root
+        group: root
+        mode: '0644'
+        force: yes
+      notify: Dconf update
+      when:
+        - gnome_version is defined
+        - "'dconf' in ansible_facts.packages"
+    
+    - name: Configure polkit with new admin group
+      ansible.builtin.template:
+        src: 40-default.rules.j2
+        dest: /etc/polkit-1/rules.d/40-default.rules
+        owner: root
+        group: root
+        mode: '0644'
+        force: yes
+      when: gnome_admin_group is defined
+    
+    - name: Configure GDM profile settings
+      ansible.builtin.include_tasks: gdm.yml
+      when:
+        - gnome_version is defined
+        - "'dconf' in ansible_facts.packages"
 
-- name: Display Gnome version if installed
-  ansible.builtin.debug:
-    msg: "Gnome Version: {{ gnome_version }}"
-  when: gnome_version is defined
-
-- name: Enforce directory permissions
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: directory
-    mode: '0755'
-    owner: root
-    group: root
-    modification_time: preserve
-    access_time: preserve
-  loop:
-    - /etc/dconf/db
-    - /etc/dconf/db/local.d
-    - /etc/dconf/db/local.d/locks
-    - /etc/dconf/db/ibus.d
-    - /etc/dconf/db/site.d
-    - /etc/dconf/db/site.d/locks
-    - /etc/dconf/db/distro.d
-    - /etc/dconf/db/distro.d/locks
-  when:
-    - gnome_version is defined
-    - "'dconf' in ansible_facts.packages"
-
-- name: Add configuration file to target local profile
-  ansible.builtin.template:
-    src: "10-ansible-gnome{{ gnome_version }}"
-    dest: /etc/dconf/db/local.d/10-ansible
-    owner: root
-    group: root
-    mode: '0644'
-    force: yes
-  notify: Dconf update
-  when:
-    - gnome_version is defined
-    - "'dconf' in ansible_facts.packages"
-
-- name: Add items to be locked
-  ansible.builtin.template:
-    src: 00-ansible-lock
-    dest: /etc/dconf/db/local.d/locks/00-ansible-lock
-    owner: root
-    group: root
-    mode: '0644'
-    force: yes
-  notify: Dconf update
-  when:
-    - gnome_version is defined
-    - "'dconf' in ansible_facts.packages"
-
-- name: Configure polkit with new admin group
-  ansible.builtin.template:
-    src: 40-default.rules.j2
-    dest: /etc/polkit-1/rules.d/40-default.rules
-    owner: root
-    group: root
-    mode: '0644'
-    force: yes
-  when: gnome_admin_group is defined
-
-- name: Configure GDM profile settings
-  ansible.builtin.include_tasks: gdm.yml
-  when:
-    - gnome_version is defined
-    - "'dconf' in ansible_facts.packages"
+  become: yes
