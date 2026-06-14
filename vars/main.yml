@@ -1,5 +1,36 @@
 ---
-
 _greeter_dconf_defaults:
-  Debian: /usr/share/gdm/greeter.dconf-defaults
-  RedHat: /usr/share/gdm/greeter-dconf-defaults
+  RedHat: distro
+  Debian: site
+
+_gnome_supported_versions:
+  - '3'
+  - '40'
+  - '41'
+  - '42'
+  - '43'
+  - '44'
+  - '45'
+  - '46'
+  - '47'
+  - '48'
+  - '49'
+
+_gnome_role_dconf_directories:
+  - /etc/dconf/db
+  - /etc/dconf/db/local.d
+  - /etc/dconf/db/local.d/locks
+  - /etc/dconf/db/ibus.d
+  - /etc/dconf/db/site.d
+  - /etc/dconf/db/site.d/locks
+  - /etc/dconf/db/distro.d
+  - /etc/dconf/db/distro.d/locks
+
+_gnome_role_root_required_tasks:
+  - /etc/dconf/db
+  - /etc/polkit-1/rules.d
+  - /usr/share/pixmaps/logo
+
+_gnome_known_container_limitations:
+  - /etc/dconf/db/gdm.d
+  - /etc/dconf/profile/gdm

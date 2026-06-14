@@ -1,0 +1,24 @@
+---
+argument_specs:
+  main:
+    short_description: Configure GNOME desktop and GDM settings
+    options:
+      gnome_lock_settings:
+        type: list
+        required: false
+        default:
+          - org/gnome/Maps/checkin-foursquare-broadcast-twitter
+          - org/gnome/Maps/checkin-foursquare-privacy
+          - org/gnome/Maps/checkin-facebook-privacy
+          - org/gnome/Maps/checkin-foursquare-broadcast-facebook
+          - org/gnome/desktop/file-sharing/require-password
+          - org/gnome/online-accounts/whitelisted-providers
+          - org/gnome/rhythmbox/sharing/enable-sharing
+      gnome_background_color_shading_type:
+        type: str
+        required: false
+        default: solid
+      gnome_background_show_desktop_icons:
+        type: bool
+        required: false
+        default: true

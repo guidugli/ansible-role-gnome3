@@ -1,0 +1,10 @@
+---
+- name: Verify GNOME role execution prerequisites
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Assert package facts are available after bootstrap
+      ansible.builtin.assert:
+        that:
+          - ansible_facts['os_family'] in ['Debian', 'RedHat']
+        quiet: true
