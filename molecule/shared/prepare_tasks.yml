@@ -1,0 +1,35 @@
+---
+- name: Gather facts for GNOME package preparation
+  ansible.builtin.setup:
+  tags:
+    - gnome3
+    - validate
+
+- name: Install GNOME test packages on Debian and Ubuntu
+  ansible.builtin.apt:
+    name:
+      - dconf-cli
+      - dconf-gsettings-backend
+      - gnome-session
+      - gsettings-desktop-schemas
+      - libglib2.0-bin
+    state: present
+    update_cache: true
+    install_recommends: false
+  when: ansible_facts['os_family'] == 'Debian'
+  tags:
+    - gnome3
+    - install
+
+- name: Install GNOME test packages on Fedora
+  ansible.builtin.dnf:
+    name:
+      - dconf
+      - glib2
+      - gnome-session
+      - gsettings-desktop-schemas
+    state: present
+  when: ansible_facts['os_family'] == 'RedHat'
+  tags:
+    - gnome3
+    - install

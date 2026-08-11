@@ -4,7 +4,7 @@
     manager: auto
   tags:
     - gnome3
-    - gnome3_validate
+    - validate
 
 - name: Determine GNOME session version
   ansible.builtin.set_fact:
@@ -12,17 +12,7 @@
   when: "'gnome-session' in ansible_facts['packages']"
   tags:
     - gnome3
-    - gnome3_validate
-
-- name: Determine dconf template path for detected GNOME version
-  ansible.builtin.set_fact:
-    _gnome_dconf_template_src: "10-ansible-gnome{{ gnome_version }}"
-  when:
-    - gnome_version is defined
-    - gnome_version in _gnome_supported_versions
-  tags:
-    - gnome3
-    - gnome3_validate
+    - validate
 
 - name: Validate detected GNOME version is supported by this role
   ansible.builtin.assert:
@@ -30,12 +20,49 @@
       - gnome_version in _gnome_supported_versions
     fail_msg: >-
       Unsupported GNOME version {{ gnome_version }}. Add a matching template under templates/
-      or update the role before applying desktop dconf settings.
+      and include the version in _gnome_supported_versions before applying desktop dconf settings.
     quiet: true
   when: gnome_version is defined
   tags:
     - gnome3
-    - gnome3_validate
+    - validate
+
+- name: Determine dconf template path for detected GNOME version
+  ansible.builtin.set_fact:
+    _gnome_dconf_template_src: "10-ansible-gnome{{ gnome_version }}"
+  when: gnome_version is defined
+  tags:
+    - gnome3
+    - validate
+
+- name: Locate dconf template for detected GNOME version
+  ansible.builtin.set_fact:
+    _gnome_dconf_template_path: >-
+      {{ lookup(
+        'ansible.builtin.first_found',
+        {
+          'files': [_gnome_dconf_template_src],
+          'paths': [role_path ~ '/templates'],
+          'skip': true
+        }
+      ) }}
+  when: gnome_version is defined
+  tags:
+    - gnome3
+    - validate
+
+- name: Validate dconf template exists for detected GNOME version
+  ansible.builtin.assert:
+    that:
+      - _gnome_dconf_template_path | default('') | length > 0
+    fail_msg: >-
+      Missing role template templates/{{ _gnome_dconf_template_src }} for detected GNOME
+      version {{ gnome_version }}.
+    quiet: true
+  when: gnome_version is defined
+  tags:
+    - gnome3
+    - validate
 
 - name: Ensure role-managed dconf directories exist
   ansible.builtin.file:
@@ -52,7 +79,7 @@
     - "'dconf' in ansible_facts['packages']"
   tags:
     - gnome3
-    - gnome3_config
+    - config
 
 - name: Render desktop dconf profile
   ansible.builtin.template:
@@ -69,7 +96,7 @@
     - _gnome_dconf_template_src is defined
   tags:
     - gnome3
-    - gnome3_config
+    - config
 
 - name: Render locked dconf keys
   ansible.builtin.template:
@@ -85,7 +112,7 @@
     - "'dconf' in ansible_facts['packages']"
   tags:
     - gnome3
-    - gnome3_config
+    - config
 
 - name: Render polkit admin group rules
   ansible.builtin.template:
@@ -98,7 +125,7 @@
   when: gnome_admin_group is defined
   tags:
     - gnome3
-    - gnome3_config
+    - config
 
 - name: Include GDM configuration tasks
   ansible.builtin.include_tasks: gdm.yml
@@ -107,4 +134,4 @@
     - "'dconf' in ansible_facts['packages']"
   tags:
     - gnome3
-    - gnome3_config
+    - config

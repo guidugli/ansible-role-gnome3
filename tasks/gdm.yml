@@ -31,7 +31,7 @@
     block: |
       user-db:user
       system-db:gdm
-      file-db:{{ _greeter_dconf_defaults[ansible_os_family] }}
+      file-db:{{ _greeter_dconf_defaults[ansible_facts['os_family']] }}
   notify: Refresh dconf database
   tags:
     - gnome3

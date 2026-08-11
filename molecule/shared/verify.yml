@@ -8,3 +8,20 @@
         that:
           - ansible_facts['os_family'] in ['Debian', 'RedHat']
         quiet: true
+      tags:
+        - gnome3
+        - validate
+
+    - name: Assert detected GNOME version has a role template
+      ansible.builtin.assert:
+        that:
+          - _gnome_dconf_template_src is defined
+          - _gnome_dconf_template_path is defined
+          - _gnome_dconf_template_path | length > 0
+        fail_msg: >-
+          The role did not resolve a dconf template for the installed GNOME version.
+        quiet: true
+      when: gnome_version is defined
+      tags:
+        - gnome3
+        - validate
