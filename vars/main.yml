@@ -16,6 +16,7 @@ _gnome_supported_versions:
   - '48'
   - '49'
   - '50'
+  - '51'
 
 _gnome_role_dconf_directories:
   - /etc/dconf/db
